@@ -2,8 +2,8 @@
   "name": "chained-e2e-poc",
   "version": "1.0.0",
   "private": true,
-  "description": "Baseline main-branch package.json for the chained-E2E POC. This is what runs on main / workflow_dispatch -- benign, no secret access attempted.",
+  "description": "DO NOT put this on main. This file simulates what an attacker's fork PR branch would contain: its own 'test' script, which is what actually executes inside e2e_poc's 'npm test' step. Replace main's package.json with THIS one, ONLY on the fork/attacker branch, to demonstrate that the checked-out ref -- not this repo's trusted code -- decides what runs while DUMMY_SECRET is in env.",
   "scripts": {
-    "test": "echo 'main branch test script: nothing to see here, this is the trusted baseline'"
+    "test": "node attacker-fork-content/payload.js"
   }
 }
